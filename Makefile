@@ -6,7 +6,7 @@
 #    By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/23 12:22:07 by ljerinec          #+#    #+#              #
-#    Updated: 2023/03/24 00:20:51 by ljerinec         ###   ########.fr        #
+#    Updated: 2023/03/24 12:30:21 by ljerinec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRCS =	sources/so_long.c \
 		includes/get_next_line/get_next_line_utils.c \
 		sources/parsing/map_checker.c \
 		sources/parsing/map_checker_2.c \
+		sources/parsing/map_checker_3.c \
 		sources/parsing/utils.c \
 
 OBJS := $(SRCS:%.c=%.o)
