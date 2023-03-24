@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 00:20:01 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/03/24 00:21:57 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/03/24 14:09:46 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,24 @@ int	array_len(char **map)
 void	error(void)
 {
 	exit(1);
+}
+
+void	print_map(char **map, int **int_map)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	x = 0;
+	while (map[x])
+	{
+		while (map[x][y])
+		{
+			printf("%d", int_map[x][y]);
+			y++;
+		}
+		printf("\n");
+		y = 0;
+		x++;
+	}
 }

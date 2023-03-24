@@ -6,37 +6,13 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 12:27:57 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/03/24 12:33:25 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/03/24 14:13:39 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/solong.h"
 
-int	coord_is_possible(char **map)
-{
-	int	**int_map;
-	int	x;
-	int	y;
-	int	i;
-	int	count;
-
-	int_map = map_in_int(map);
-	find_spawn(map, &x, &y);
-	int_map[x][y] = 2;
-	i = 2;
-	count = 1;
-	while (count >= 0)
-	{
-		count = find_coord(map, int_map, i++);
-		count--;
-	}
-	find_exit(&x, &y, map);
-	if (int_map[x][y] == 0)
-		return (0);
-	return (1);
-}
-
-void	print_map(char **map, int **int_map)
+int	check_all(char **map, int **int_map)
 {
 	int	x;
 	int	y;
@@ -47,13 +23,15 @@ void	print_map(char **map, int **int_map)
 	{
 		while (map[x][y])
 		{
-			printf("%d", int_map[x][y]);
+			if (map[x][y] == 'C' || map[x][y] == 'E')
+				if (int_map[x][y] == 0)
+					return (0);
 			y++;
 		}
-		printf("\n");
 		y = 0;
 		x++;
 	}
+	return (1);
 }
 
 int	check_side(int **int_map, int x, int y)
@@ -106,7 +84,6 @@ int	find_coord(char **map, int **int_map, int i)
 	}
 	return (count);
 }
-
 
 int	**map_in_int(char **map)
 {
