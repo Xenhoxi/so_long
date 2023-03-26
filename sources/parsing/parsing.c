@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 15:08:48 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/03/23 23:34:01 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/03/26 05:09:43 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ char	**parsing(char *map)
 		tab = array_join(tab, line);
 		line = get_next_line(fd);
 	}
+	free(line);
+	close(fd);
 	return (tab);
 }
 

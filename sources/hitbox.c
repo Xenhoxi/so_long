@@ -1,61 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   hitbox.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/24 00:20:01 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/03/24 22:06:01 by ljerinec         ###   ########.fr       */
+/*   Created: 2023/03/25 16:36:59 by ljerinec          #+#    #+#             */
+/*   Updated: 2023/03/25 18:08:27 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/solong.h"
+#include "../includes/solong.h"
 
-int	array_len(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-		i++;
-	return (i);
-}
-
-void	error(void)
-{
-	exit(1);
-}
-
-void	print_map(char **map, int **int_map)
+int	check_hitbox(t_solong *sl, int p_x, int p_y)
 {
 	int	x;
 	int	y;
+	int	player_x;
+	int	player_y;
 
-	y = 0;
 	x = 0;
-	while (map[x])
+	y = 0;
+	player_x = p_x;
+	player_y = p_y;
+	while (sl->map[y])
 	{
-		while (map[x][y])
+		while (sl->map[y][x])
 		{
-			printf("%d", int_map[x][y]);
-			y++;
+			if (sl->map[y][x] == '1')
+			{
+				if (player_x < (x * 64) + TILE_SIZE && player_x + sl->player_width > x * 64 && player_y < y * 64 + TILE_SIZE && player_y + sl->player_height > y * 64)
+					return (1);
+			}
+			x++;
 		}
-		printf("\n");
-		y = 0;
-		x++;
+		x = 0;
+		y++;
 	}
-}
-
-void	free_2d_char_array(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-	{
-		free(map[i]);
-		i++;
-	}
-	free(map);
+	return (0);
 }

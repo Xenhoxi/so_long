@@ -6,7 +6,7 @@
 #    By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/23 12:22:07 by ljerinec          #+#    #+#              #
-#    Updated: 2023/03/24 12:30:21 by ljerinec         ###   ########.fr        #
+#    Updated: 2023/03/25 16:42:37 by ljerinec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ PRINT_PREFIX	= \033[1m\033[38;5;240m[\033[0m\033[38;5;250m$(NAME)\033[1m\033[38;
 ################################################################################
 
 SRCS =	sources/so_long.c \
+		sources/hitbox.c \
 		sources/parsing/parsing.c \
 		includes/get_next_line/get_next_line.c \
 		includes/get_next_line/get_next_line_utils.c \
