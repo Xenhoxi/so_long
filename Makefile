@@ -6,7 +6,7 @@
 #    By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/23 12:22:07 by ljerinec          #+#    #+#              #
-#    Updated: 2023/03/25 16:42:37 by ljerinec         ###   ########.fr        #
+#    Updated: 2023/03/29 01:25:08 by ljerinec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,11 +30,12 @@ SRCS =	sources/so_long.c \
 		sources/parsing/map_checker_2.c \
 		sources/parsing/map_checker_3.c \
 		sources/parsing/utils.c \
+		sources/drawing.c \
 
 OBJS := $(SRCS:%.c=%.o)
 
 CC       = gcc
-FLAGS    = -Wall -Wextra -Werror 
+FLAGS    = -Wall -Wextra -Werror -g3 -fsanitize=address
 
 LIBFT_DIR = includes/libft/libft.a
 # MLX42_INC = -lglfw -L /Users/ljerinec/.brew/Cellar/glfw/3.3.8/lib/

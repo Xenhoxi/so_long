@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:27:55 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/03/26 05:10:56 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/04 14:28:18 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int	map_checking(char **map)
 					if (map_collectible(map) == 1)
 						if (coord_is_possible(map) == 1)
 							return (1);
-	free_2d_char_array(map);
-	*map = NULL;
+	// free_2d_char_array(map);
+	// *map = NULL;
 	return (0);
 }
 

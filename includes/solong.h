@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 12:03:02 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/03/25 18:09:30 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/04 14:37:19 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,22 @@
 # include "get_next_line/get_next_line.h"
 # include "MLX42/include/MLX42/MLX42.h"
 
-static mlx_image_t	*g_image;
+// static mlx_image_t	*g_image;
 
 typedef struct s_solong
 {
-	mlx_t	*mlx;
-	char	**map;
-	int		map_height;
-	int		map_width;
-	int		tile_width;
-	int		tile_heigth;
-	int		player_height;
-	int		player_width;
-	int		player_x;
-	int		player_y;
+	mlx_t			*mlx;
+	mlx_texture_t	**texture;
+	mlx_image_t		*player;
+	char			**map;
+	int				map_height;
+	int				map_width;
+	int				tile_width;
+	int				tile_heigth;
+	int				player_height;
+	int				player_width;
+	int				player_x;
+	int				player_y;
 }			t_solong;
 
 // so_long.cs
