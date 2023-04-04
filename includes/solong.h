@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 12:03:02 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/04 14:37:19 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/04 16:06:04 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 # define SOLONG_H
 
-# define TILE_SIZE 64
+# define T_S 64
 
 # include <stdarg.h>
 # include <unistd.h>

@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 01:23:10 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/04 14:48:16 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/04 16:06:41 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	draw(t_solong *sl)
 	{
 		while (sl->map[y][x])
 		{
-			mlx_image_to_window(sl->mlx, imgsol, (x * 64), (y * 64));
+			mlx_image_to_window(sl->mlx, imgsol, (x * T_S), (y * T_S));
 			if (sl->map[y][x] == '1')
-				mlx_image_to_window(sl->mlx, img, (x * 64), (y * 64));
+				mlx_image_to_window(sl->mlx, img, (x * T_S), (y * T_S));
 			x++;
 		}
 		x = 0;
@@ -43,6 +43,7 @@ void	draw_player(t_solong *sl)
 	int		x;
 	int		y;
 
+	sl->player = mlx_texture_to_image(sl->mlx, sl->texture[3]);
 	map = sl->map;
 	x = 0;
 	y = 0;
@@ -51,11 +52,10 @@ void	draw_player(t_solong *sl)
 		while (map[y][x])
 		{
 			if (map[y][x] == 'P')
-				mlx_image_to_window(sl->mlx, sl->player, (x * 64), (y * 64));
+				mlx_image_to_window(sl->mlx, sl->player, (x * T_S), (y * T_S));
 			x++;
 		}
 		x = 0;
 		y++;
 	}
-	mlx_image_to_window(sl->mlx, sl->player, (x * 64), (y * 64));
 }

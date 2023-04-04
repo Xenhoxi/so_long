@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:27:55 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/04 14:28:18 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/04 16:29:12 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	checking(t_solong *solong)
 		print_char_map(map);
 		solong->map_width = ft_strlen_gnl(map[0]);
 		solong->map_height = array_len(map);
-		solong->tile_heigth = solong->map_height * TILE_SIZE;
-		solong->tile_width = solong->map_width * TILE_SIZE;
+		solong->tile_heigth = solong->map_height * T_S;
+		solong->tile_width = solong->map_width * T_S;
 	}
 }
 
@@ -38,8 +38,6 @@ int	map_checking(char **map)
 					if (map_collectible(map) == 1)
 						if (coord_is_possible(map) == 1)
 							return (1);
-	// free_2d_char_array(map);
-	// *map = NULL;
 	return (0);
 }
 

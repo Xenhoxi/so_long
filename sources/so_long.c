@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:28:48 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/04 14:51:29 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/04 16:08:25 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,8 @@ t_solong	*init_solong(void)
 	sl->player_y = 0;
 	sl->player_width = 35;
 	sl->player_height = 43;
+	sl->player = NULL;
 	texture_init(sl);
-	// sl->player = mlx_new_image(sl->mlx, sl->map_width, sl->map_height);
-	sl->player = mlx_texture_to_image(sl->mlx, sl->texture[3]);
 	return (sl);
 }
 
@@ -159,15 +158,12 @@ void	ft_hook(void *param)
 
 void	init(t_solong *sl)
 {
-	char	**map;
-
-	map = sl->map;
 	sl->mlx = mlx_init(sl->tile_width, sl->tile_heigth, "so_long", true);
 	if (!sl->mlx)
 		exit(EXIT_FAILURE);
 	draw(sl);
-	// draw_player(sl);
-	// mlx_loop_hook(sl->mlx, ft_hook, sl);
+	draw_player(sl);
+	mlx_loop_hook(sl->mlx, ft_hook, sl);
 	mlx_loop(sl->mlx);
 }
 

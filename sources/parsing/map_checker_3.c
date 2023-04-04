@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 12:27:57 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/03/28 02:01:52 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/04 15:43:16 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	check_all(char **map, int **int_map)
 		y = 0;
 		x++;
 	}
-	free_int_map(int_map);
+	// free_int_map(int_map);
 	return (1);
 }
 
