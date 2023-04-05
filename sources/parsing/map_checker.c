@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:27:55 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/04 16:29:12 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/05 13:25:27 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	map_is_rectangle(char **map)
 	i = 1;
 	while (map[i])
 	{
-		if (ft_strlen(map[i]) != width)
+		if (ft_strlen_gnl(map[i]) != width)
 			return (0);
 		i++;
 	}

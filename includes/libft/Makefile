@@ -35,7 +35,7 @@ SRCS =	ft_strlen.c \
 		ft_lstdelfirst.c \
 		ft_lstdellast.c \
 
-OBJECTS := $(SRCS:%.c=%.o)
+OBJS = $(SRCS:%.c=%.o)
 
 CFLAGS = -Wall -Werror -Wextra
 CC = gcc
@@ -43,21 +43,22 @@ CC = gcc
 PRINT_NAME		:= libft
 PRINT_PREFIX	:=	\033[1m\033[38;5;240m[\033[0m\033[38;5;250m$(PRINT_NAME)\033[1m\033[38;5;240m] \033[38;5;105m~\033[0m
 
-all: $(NAME) 
+all: $(NAME)
 
-$(NAME): $(OBJECTS)
+$(NAME): $(OBJS)
+	@make -C ft_printf
 	@echo "$(PRINT_PREFIX)\033[0;38;5;226m Compiling \033[0m\n"
-	@ar -rcs $(NAME) $(OBJECTS)
+	@ar -rcs $(NAME) $(OBJS)
 	@echo "$(PRINT_PREFIX)\033[0;38;5;226m Done \033[0m\n"
 
 clean:
+	@make -C ft_printf clean
 	@echo "$(PRINT_PREFIX)\033[0;38;5;226m Cleaning \033[0m\n"
-	@rm -f $(OBJECTS)
+	@rm -f $(OBJS)
 	@echo "$(PRINT_PREFIX)\033[0;38;5;226m Done \033[0m\n"
 
 fclean: clean
-	@/bin/rm -f $(NAME)
-	@rm -f $(OBJECTS)
+	@rm -f $(NAME)
 
 re: fclean all
 

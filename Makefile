@@ -6,7 +6,7 @@
 #    By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/23 12:22:07 by ljerinec          #+#    #+#              #
-#    Updated: 2023/04/04 16:26:46 by ljerinec         ###   ########.fr        #
+#    Updated: 2023/04/05 14:45:46 by ljerinec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,12 +34,13 @@ SRCS =	sources/so_long.c \
 
 OBJS := $(SRCS:%.c=%.o)
 
-CC       = gcc
-FLAGS    = -Wall -Wextra -Werror -g3
+FLAGS    = -Wall -Wextra -Werror
+CC       = gcc $(FLAGS)
 
 LIBFT_DIR = includes/libft/libft.a
-MLX42_INC = -lglfw -L /Users/ljerinec/.brew/Cellar/glfw/3.3.8/lib/
-# MLX42_INC = -lglfw -L /opt/homebrew/Cellar/glfw/3.3.8/lib/
+PRINTF_DIR = includes/libft/ft_printf/ft_printf.a
+# MLX42_INC = -lglfw -L /Users/ljerinec/.brew/Cellar/glfw/3.3.8/lib/
+MLX42_INC = -lglfw -L /opt/homebrew/Cellar/glfw/3.3.8/lib/
 MLX42_DIR = includes/MLX42/build/libmlx42.a
 
 ################################################################################
@@ -51,7 +52,7 @@ all: ${NAME}
 $(NAME): $(OBJS)
 	@make -C includes/libft
 	@echo "$(PRINT_PREFIX)\033[0;38;5;226m Compiling so_long \033[0m\n"
-	@$(CC) -o $(NAME) $(OBJS) $(MLX42_DIR) $(MLX42_INC) $(LIBFT_DIR)
+	@$(CC) -o $(NAME) $(OBJS) $(MLX42_DIR) $(MLX42_INC) $(LIBFT_DIR) $(PRINTF_DIR)
 	@echo "$(PRINT_PREFIX)\033[0;38;5;226m Done \033[0m\n"
 
 clean:

@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:28:48 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/04 16:08:25 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/05 14:46:01 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,29 +91,13 @@ void	change_direction(t_solong *sl, char c)
 	}
 }
 
-// void	ft_direction(void *param)
-// {
-// 	t_solong	*sl;
-// 	mlx_t		*mlx;
-// 	int			x;
-// 	int			y;
-
-// 	sl = param;
-// 	mlx = sl->mlx;
-// 	x = 0;
-// 	y = 0;
-// 	mlx_get_mouse_pos(mlx, &x, &y);
-// }
-
 void	ft_hook(void *param)
 {
 	t_solong	*sl;
 	mlx_t		*mlx;
-	int			key_pressed;
 
 	sl = param;
 	mlx = sl->mlx;
-	key_pressed = 0;
 	sl->player_x = sl->player->instances[0].x;
 	sl->player_y = sl->player->instances[0].y;
 	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))

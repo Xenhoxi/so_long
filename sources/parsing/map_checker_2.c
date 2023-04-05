@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 00:19:04 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/03/28 02:01:06 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/05 13:25:42 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,7 @@ int	map_collectible(char **map)
 {
 	int	i;
 	int	j;
-	int	count;
 
-	count = 0;
 	i = 0;
 	j = 0;
 	while (map[i])

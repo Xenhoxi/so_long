@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 15:08:48 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/03/29 01:49:02 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/05 13:24:51 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ char	**parsing(char *map)
 	char	**tab;
 	char	*line;
 	int		fd;
-	int		i;
 
-	i = 0;
 	tab = NULL;
 	fd = selected_fd(map);
 	line = get_next_line(fd);
