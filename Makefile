@@ -6,7 +6,7 @@
 #    By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/23 12:22:07 by ljerinec          #+#    #+#              #
-#    Updated: 2023/04/05 14:45:46 by ljerinec         ###   ########.fr        #
+#    Updated: 2023/04/06 15:52:05 by ljerinec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,7 @@ PRINT_PREFIX	= \033[1m\033[38;5;240m[\033[0m\033[38;5;250m$(NAME)\033[1m\033[38;
 #                                 PROGRAM'S SRCS                               #
 ################################################################################
 
-SRCS =	sources/so_long.c \
-		sources/hitbox.c \
+SRCS =	sources/game/so_long.c \
 		sources/parsing/parsing.c \
 		includes/get_next_line/get_next_line.c \
 		includes/get_next_line/get_next_line_utils.c \
@@ -30,7 +29,10 @@ SRCS =	sources/so_long.c \
 		sources/parsing/map_checker_2.c \
 		sources/parsing/map_checker_3.c \
 		sources/parsing/utils.c \
-		sources/drawing.c \
+		sources/initialisation/init.c \
+		sources/game/drawing.c \
+		sources/game/move.c \
+		sources/game/hitbox.c \
 
 OBJS := $(SRCS:%.c=%.o)
 

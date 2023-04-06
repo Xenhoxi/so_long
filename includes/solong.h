@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 12:03:02 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/05 14:19:22 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/06 16:41:33 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,36 +27,78 @@
 
 // static mlx_image_t	*g_image;
 
+// # define PERSON_RIGHT "./images/hitman_right.png"
+
+typedef struct s_player
+{
+	mlx_image_t	*img;
+	int			x;
+	int			y;
+	int			direction;
+	int			height;
+	int			width;	
+}			t_player;
+
+typedef struct s_collectible
+{
+	mlx_image_t	*img;
+	int			x;
+	int			y;
+	int			is_collected;
+	int			current_img;
+}			t_collectible;
+
+typedef struct s_map
+{
+	char	**map;
+	int		x;
+	int		y;
+	int		height;
+	int		width;
+	int		height_px;
+	int		width_px;
+}			t_map;
+
 typedef struct s_solong
 {
 	mlx_t			*mlx;
 	mlx_texture_t	**texture;
-	mlx_image_t		*player;
-	char			**map;
-	int				map_height;
-	int				map_width;
-	int				tile_width;
-	int				tile_heigth;
-	int				player_height;
-	int				player_width;
-	int				player_x;
-	int				player_y;
+	t_player		*player;
+	t_map			*map;
+	t_collectible	**collectible;
 }			t_solong;
 
 // so_long.cs
 void		print_char_map(char **map);
 void		draw(t_solong *solong);
-t_solong	*init_solong(void);
 void		draw_player(t_solong *solong);
+void		run(t_solong *solong);
 
-// hibox.c
+// game/drawing.c
+void		draw(t_solong *sl);
+void		draw_player(t_solong *sl);
+int			count_c(char **map);
+void		create_c(t_solong *sl);
+void		draw_c(t_solong *sl);
+
+// game/hibox.c
 int			check_hitbox(t_solong *sl, int p_x, int p_y);
+int			check_hitbox_c(t_solong *sl, int player_x, int player_y);
+
+// game/move.c
+void		key_hook(t_solong *sl);
+void		vertical_move(t_solong *sl);
+void		horizontal_move(t_solong *sl);
+void		change_direction(t_solong *sl, char c);
+
+// game/init.c
+t_solong	*init_solong(void);
+void		texture_init(t_solong *solong);
 
 // parsing/parsing.c
 char		**parsing(char *map);
 int			selected_fd(char *map);
 char		**array_join(char **array, char *line);
-void		init(t_solong *solong);
 
 // parsing/map_checker.c
 void		checking(t_solong *solong);
@@ -84,5 +126,6 @@ int			array_len(char **map);
 void		error(void);
 void		print_map(char **map, int **int_map);
 void		free_2d_char_array(char **map);
+void		print_char_map(char **map);
 
 #endif

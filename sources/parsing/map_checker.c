@@ -6,26 +6,26 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:27:55 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/05 13:25:27 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/06 15:30:46 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/solong.h"
 
-void	checking(t_solong *solong)
+void	checking(t_solong *sl)
 {
 	char	**map;
 
-	map = solong->map;
+	map = sl->map->map;
 	if (map_checking(map) == 0)
 		printf("Error\n");
 	else
 	{
 		print_char_map(map);
-		solong->map_width = ft_strlen_gnl(map[0]);
-		solong->map_height = array_len(map);
-		solong->tile_heigth = solong->map_height * T_S;
-		solong->tile_width = solong->map_width * T_S;
+		sl->map->width = ft_strlen_gnl(map[0]);
+		sl->map->height = array_len(map);
+		sl->map->height_px = sl->map->height * T_S;
+		sl->map->width_px = sl->map->width * T_S;
 	}
 }
 
