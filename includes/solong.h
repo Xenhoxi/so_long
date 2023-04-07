@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 12:03:02 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/06 16:41:33 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/06 23:58:29 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void		draw_c(t_solong *sl);
 
 // game/hibox.c
 int			check_hitbox(t_solong *sl, int p_x, int p_y);
-int			check_hitbox_c(t_solong *sl, int player_x, int player_y);
+void		check_hitbox_c(void	*param);
 
 // game/move.c
 void		key_hook(t_solong *sl);

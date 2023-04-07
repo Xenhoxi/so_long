@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:28:48 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/06 16:49:40 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/07 00:05:10 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,16 @@ void	run(t_solong *sl)
 	draw_player(sl);
 	create_c(sl);
 	draw_c(sl);
+	mlx_loop_hook(sl->mlx, check_hitbox_c, sl);
 	mlx_loop_hook(sl->mlx, ft_hook, sl);
 	mlx_loop(sl->mlx);
+}
+
+void	ft_swap(int *a, int *b)
+{
+	int	tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
 }
