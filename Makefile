@@ -6,7 +6,7 @@
 #    By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/23 12:22:07 by ljerinec          #+#    #+#              #
-#    Updated: 2023/04/06 15:52:05 by ljerinec         ###   ########.fr        #
+#    Updated: 2023/04/07 16:06:47 by ljerinec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,10 @@ SRCS =	sources/game/so_long.c \
 		sources/initialisation/init.c \
 		sources/game/drawing.c \
 		sources/game/move.c \
+		sources/game/move_2.c \
 		sources/game/hitbox.c \
+		sources/game/collectible.c \
+		sources/game/gun.c \
 
 OBJS := $(SRCS:%.c=%.o)
 

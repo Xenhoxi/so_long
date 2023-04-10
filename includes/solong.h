@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 12:03:02 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/06 23:58:29 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/11 01:40:39 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,22 @@ typedef struct s_player
 	mlx_image_t	*img;
 	int			x;
 	int			y;
-	int			direction;
+	char		direction;
+	int			is_armed;
 	int			height;
-	int			width;	
+	int			width;
+	int			timer;
 }			t_player;
 
-typedef struct s_collectible
+typedef struct s_collect
 {
 	mlx_image_t	*img;
 	int			x;
 	int			y;
+	char		type;
 	int			is_collected;
 	int			current_img;
-}			t_collectible;
+}			t_collect;
 
 typedef struct s_map
 {
@@ -59,13 +62,25 @@ typedef struct s_map
 	int		width_px;
 }			t_map;
 
+typedef struct s_shot
+{
+	mlx_image_t	*img;
+	int			x;
+	int			y;
+	char		direction;
+	int			is_on;
+	int			height;
+	int			width;
+}			t_shot;
+
 typedef struct s_solong
 {
 	mlx_t			*mlx;
 	mlx_texture_t	**texture;
 	t_player		*player;
 	t_map			*map;
-	t_collectible	**collectible;
+	t_collect		**collectible;
+	t_shot			**shot;
 }			t_solong;
 
 // so_long.cs
@@ -75,21 +90,41 @@ void		draw_player(t_solong *solong);
 void		run(t_solong *solong);
 
 // game/drawing.c
-void		draw(t_solong *sl);
+void		draw_map(t_solong *sl);
 void		draw_player(t_solong *sl);
+
+// game/collectible.c
 int			count_c(char **map);
 void		create_c(t_solong *sl);
+char		is_c(char type);
 void		draw_c(t_solong *sl);
+t_collect	*init_c(t_solong *sl, int x, int y, char type);
 
 // game/hibox.c
-int			check_hitbox(t_solong *sl, int p_x, int p_y);
+int			check_hitbox(t_solong *sl, int player_x, int player_y);
 void		check_hitbox_c(void	*param);
+int			check_hitbox_shot(t_solong *sl, int player_x, int player_y);
 
 // game/move.c
+void		move(t_solong *sl);
+void		check_left(t_solong *sl, int player_x, int player_y);
+void		check_right(t_solong *sl, int player_x, int player_y);
+void		check_up(t_solong *sl, int player_x, int player_y);
+void		check_down(t_solong *sl, int player_x, int player_y);
+
+// game/move_2.c
 void		key_hook(t_solong *sl);
-void		vertical_move(t_solong *sl);
-void		horizontal_move(t_solong *sl);
-void		change_direction(t_solong *sl, char c);
+void		change_img(t_solong *sl, int x, int y, int i);
+void		change_direction(t_solong *sl, char direction);
+
+// game/gun.c
+void		shot(void *param);
+t_shot		**array_join_shot(t_shot **array_proj, t_shot *shot);
+t_shot		*create_shot(t_solong *sl);
+void		move_shot(t_solong *sl);
+void		check_shot_validity(t_solong *sl);
+void		delete_shot_off(t_solong *sl);
+void		place_shot(t_solong *sl, t_shot *shot);
 
 // game/init.c
 t_solong	*init_solong(void);

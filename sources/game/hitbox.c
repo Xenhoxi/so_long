@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 16:36:59 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/06 23:59:43 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/11 01:43:57 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,39 @@ void	check_hitbox_c(void *param)
 		{
 			sl->collectible[i]->is_collected = 1;
 			mlx_delete_image(sl->mlx, sl->collectible[i]->img);
+			if (sl->collectible[i]->type == 'W')
+			{
+				sl->player->is_armed = 1;
+				change_direction(sl, sl->player->direction);
+			}
 		}
 		i++;
 	}
+}
+
+int	check_hitbox_shot(t_solong *sl, int sx, int sy)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	while (sl->map->map[y])
+	{
+		while (sl->map->map[y][x])
+		{
+			if (sl->map->map[y][x] == '1')
+			{
+				if (sx < (x * 64) + T_S
+					&& sx + 15 > x * 64
+					&& sy < y * 64 + T_S
+					&& sy + 15 > y * 64)
+					return (1);
+			}
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+	return (0);
 }
