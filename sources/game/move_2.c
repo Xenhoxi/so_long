@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 13:39:06 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/07 15:05:25 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/11 12:23:42 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@ void	change_img(t_solong *sl, int x, int y, int i)
 	if (sl->player->is_armed == 0)
 		sl->player->img = mlx_texture_to_image(sl->mlx, sl->texture[i]);
 	else if (sl->player->is_armed == 1)
+	{
 		sl->player->img = mlx_texture_to_image(sl->mlx, sl->texture[i + 4]);
+		sl->player->width = 49;
+		sl->player->height = 49;
+	}
 	mlx_image_to_window(sl->mlx, sl->player->img, x, y);
 }

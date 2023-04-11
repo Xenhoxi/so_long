@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 12:03:02 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/11 01:40:39 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/11 15:58:36 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,18 @@ typedef struct s_shot
 	int			width;
 }			t_shot;
 
+typedef struct s_ennemy
+{
+	mlx_image_t	*img;
+	int			x;
+	int			y;
+	int			health;
+	char		direction;
+	int			is_on;
+	int			height;
+	int			width;
+}			t_ennemy;
+
 typedef struct s_solong
 {
 	mlx_t			*mlx;
@@ -80,6 +92,7 @@ typedef struct s_solong
 	t_player		*player;
 	t_map			*map;
 	t_collect		**collectible;
+	t_ennemy		**ennemy;
 	t_shot			**shot;
 }			t_solong;
 
@@ -125,6 +138,14 @@ void		move_shot(t_solong *sl);
 void		check_shot_validity(t_solong *sl);
 void		delete_shot_off(t_solong *sl);
 void		place_shot(t_solong *sl, t_shot *shot);
+void		free_array_struct(t_shot **array_shot);
+t_shot		**array_remove(t_shot **array_shot, int index);
+
+// game/ennemy.c
+void		create_ennemy(t_solong *sl);
+int			count_ennemy(char **map);
+t_ennemy	*init_ennemy(t_solong *sl, int _x, int _y);
+void		draw_ennemy(t_solong *sl);
 
 // game/init.c
 t_solong	*init_solong(void);

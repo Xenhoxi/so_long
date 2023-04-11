@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:28:48 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/09 22:49:44 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/11 15:38:37 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	init(t_solong *sl)
 {
 	draw_map(sl);
 	draw_player(sl);
+	create_ennemy(sl);
+	// draw_ennemy(sl);
 	create_c(sl);
 	draw_c(sl);
 }
