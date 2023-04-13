@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 12:03:02 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/11 15:58:36 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/13 15:34:32 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ typedef struct s_solong
 	t_player		*player;
 	t_map			*map;
 	t_collect		**collectible;
-	t_ennemy		**ennemy;
 	t_shot			**shot;
+	t_ennemy		**ennemy;
 }			t_solong;
 
 // so_long.cs
@@ -146,6 +146,8 @@ void		create_ennemy(t_solong *sl);
 int			count_ennemy(char **map);
 t_ennemy	*init_ennemy(t_solong *sl, int _x, int _y);
 void		draw_ennemy(t_solong *sl);
+int			check_ennemy(t_solong *sl, int sx, int sy, int is_shot);
+void		ennemy(void	*param);
 
 // game/init.c
 t_solong	*init_solong(void);

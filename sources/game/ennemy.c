@@ -6,11 +6,26 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 15:39:08 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/11 15:58:32 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/13 18:18:00 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/solong.h"
+
+void	ennemy(void	*param)
+{
+	t_solong	*sl;
+	int			i;
+
+	i = 0;
+	sl = (t_solong *)param;
+	while (sl->ennemy[i])
+	{
+		if (sl->ennemy[i]->is_on == 0)
+			mlx_delete_image(sl->mlx, sl->ennemy[i]->img);
+		i++;
+	}
+}
 
 void	create_ennemy(t_solong *sl)
 {
@@ -23,7 +38,7 @@ void	create_ennemy(t_solong *sl)
 	i = 0;
 	y = 0;
 	x = 0;
-	sl->ennemy = malloc(sizeof(t_collect *) * nb_ennemy + 1);
+	sl->ennemy = malloc(sizeof(t_collect *) * (nb_ennemy + 1));
 	while (sl->map->map[y])
 	{
 		while (sl->map->map[y][x])
@@ -31,7 +46,6 @@ void	create_ennemy(t_solong *sl)
 			if (sl->map->map[y][x] == 'M')
 			{
 				sl->ennemy[i] = init_ennemy(sl, x, y);
-				ft_printf("Ennemy cree !\n");
 				i++;
 			}
 			x++;
@@ -51,8 +65,8 @@ t_ennemy	*init_ennemy(t_solong *sl, int _x, int _y)
 	ennemy->direction = 'W';
 	ennemy->health = 100;
 	ennemy->is_on = 1;
-	ennemy->x = _x * T_S;
-	ennemy->y = _y * T_S;
+	ennemy->x = _x * T_S + 7 ;
+	ennemy->y = _y * T_S + 7;
 	ennemy->width = 49;
 	ennemy->height = 49;
 	return (ennemy);
@@ -84,10 +98,8 @@ int	count_ennemy(char **map)
 void	draw_ennemy(t_solong *sl)
 {
 	int	i;
-	// int	count;
 
 	i = 0;
-	// count = count_c(sl->map->map);
 	while (sl->ennemy[i])
 	{
 		if (sl->ennemy[i]->is_on)

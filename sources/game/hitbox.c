@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 16:36:59 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/11 01:43:57 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/13 15:36:12 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int	check_hitbox_shot(t_solong *sl, int sx, int sy)
 
 	x = 0;
 	y = 0;
+	if (sl->shot == NULL)
+		return (0);
 	while (sl->map->map[y])
 	{
 		while (sl->map->map[y][x])
@@ -95,6 +97,34 @@ int	check_hitbox_shot(t_solong *sl, int sx, int sy)
 		}
 		x = 0;
 		y++;
+	}
+	return (0);
+}
+
+int	check_ennemy(t_solong *sl, int sx, int sy, int is_shot)
+{
+	int	i;
+
+	i = 0;
+	if (sl->ennemy == NULL)
+		return (0);
+	while (sl->ennemy[i])
+	{
+		if (sx < (sl->ennemy[i]->x) + sl->ennemy[i]->width
+			&& sx + 15 > sl->ennemy[i]->x
+			&& sy < sl->ennemy[i]->y + sl->ennemy[i]->height
+			&& sy + 15 > sl->ennemy[i]->y
+			&& sl->ennemy[i]->is_on)
+		{
+			if (is_shot)
+			{
+				sl->ennemy[i]->health -= 26;
+				if (sl->ennemy[i]->health <= 0)
+					sl->ennemy[i]->is_on = 0;
+			}
+			return (1);
+		}
+		i++;
 	}
 	return (0);
 }

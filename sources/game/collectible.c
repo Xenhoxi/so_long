@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:12:29 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/11 15:50:34 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/13 16:04:11 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,17 @@ t_collect	*init_c(t_solong *sl, int x, int y, char type)
 
 	collectible = malloc(sizeof(t_collect));
 	if (type == 'C')
+	{
 		collectible->img = mlx_texture_to_image(sl->mlx, sl->texture[10]);
+		collectible->x = x * T_S;
+		collectible->y = y * T_S;
+	}
 	if (type == 'W')
+	{
 		collectible->img = mlx_texture_to_image(sl->mlx, sl->texture[11]);
-	collectible->x = x * T_S;
-	collectible->y = y * T_S;
+		collectible->x = x * T_S + 20;
+		collectible->y = y * T_S + 25;
+	}
 	collectible->type = type;
 	collectible->is_collected = 0;
 	collectible->current_img = 0;
@@ -63,7 +69,7 @@ void	create_c(t_solong *sl)
 	y = 0;
 	x = 0;
 	map = sl->map->map;
-	sl->collectible = malloc(sizeof(t_collect *) * count_c(sl->map->map));
+	sl->collectible = malloc(sizeof(t_collect *) * (count_c(sl->map->map) + 1));
 	while (map[y])
 	{
 		while (map[y][x])
@@ -78,6 +84,7 @@ void	create_c(t_solong *sl)
 		x = 0;
 		y++;
 	}
+	sl->collectible[i] = NULL;
 }
 
 char	is_c(char type)

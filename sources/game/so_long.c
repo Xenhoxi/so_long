@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:28:48 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/11 15:38:37 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/13 17:50:08 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	init(t_solong *sl)
 	draw_map(sl);
 	draw_player(sl);
 	create_ennemy(sl);
-	// draw_ennemy(sl);
+	draw_ennemy(sl);
 	create_c(sl);
 	draw_c(sl);
 }
@@ -51,5 +51,6 @@ void	run(t_solong *sl)
 	mlx_loop_hook(sl->mlx, check_hitbox_c, sl);
 	mlx_loop_hook(sl->mlx, ft_hook, sl);
 	mlx_loop_hook(sl->mlx, shot, sl);
+	mlx_loop_hook(sl->mlx, ennemy, sl);
 	mlx_loop(sl->mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:57:14 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/11 15:32:39 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/13 15:34:24 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	shot(void *param)
 {
 	t_solong	*sl;
 	t_shot		*new_shot;
-	// mlx_image_t	*img;
 
 	sl = param;
 	if (mlx_is_key_down(sl->mlx, MLX_KEY_SPACE) && sl->player->is_armed
@@ -69,10 +68,12 @@ void	check_shot_validity(t_solong *sl)
 		{
 			if (sl->shot[i]->is_on)
 			{
-				if (sl->shot[i]->x < 0 || sl->shot[i]->x > sl->map->width_px
+				if (sl->shot[i]->x < 0
+					|| sl->shot[i]->x > sl->map->width_px
 					|| sl->shot[i]->y < 0
 					|| sl->shot[i]->y > sl->map->height_px
-					|| check_hitbox_shot(sl, sl->shot[i]->x, sl->shot[i]->y))
+					|| check_hitbox_shot(sl, sl->shot[i]->x, sl->shot[i]->y)
+					|| check_ennemy(sl, sl->shot[i]->x, sl->shot[i]->y, 1))
 				{
 					sl->shot[i]->is_on = 0;
 					mlx_delete_image(sl->mlx, sl->shot[i]->img);
@@ -172,7 +173,6 @@ t_shot	**array_remove(t_shot **array_shot, int	index)
 	}
 	new_array[i + 1] = NULL;
 	free_array_struct(array_shot);
-	// free(array_shot);
 	return (new_array);
 }
 

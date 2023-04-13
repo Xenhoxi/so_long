@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 12:27:57 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/06 14:28:43 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/13 15:30:33 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int	check_all(char **map, int **int_map)
 	{
 		while (map[x][y])
 		{
-			if (map[x][y] == 'C' || map[x][y] == 'E')
+			if (map[x][y] == 'C' || map[x][y] == 'E'
+				|| map[x][y] == 'P' || map[x][y] == 'M')
 				if (int_map[x][y] == 0)
 					return (0);
 			y++;
