@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:57:14 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/13 15:34:24 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/14 13:18:25 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,31 @@
 void	shot(void *param)
 {
 	t_solong	*sl;
-	t_shot		*new_shot;
+	int			x;
+	int			y;
 
-	sl = param;
+	sl = (t_solong *)param;
+	x = sl->player->img->instances[0].x;
+	y = sl->player->img->instances[0].y;
 	if (mlx_is_key_down(sl->mlx, MLX_KEY_SPACE) && sl->player->is_armed
 		&& sl->player->timer <= 0)
 	{
-		new_shot = create_shot(sl);
-		sl->shot = array_join_shot(sl->shot, new_shot);
+		shot_a_shot(sl, x, y, sl->player->direction);
 		sl->player->timer = 10;
-		place_shot(sl, new_shot);
 	}
 	if (!mlx_is_key_down(sl->mlx, MLX_KEY_SPACE) && sl->player->timer >= 0)
 		sl->player->timer--;
 	move_shot(sl);
 	check_shot_validity(sl);
+}
+
+void	shot_a_shot(t_solong *sl, int _x, int _y, char dir)
+{
+	t_shot	*new_shot;
+
+	new_shot = create_shot(sl, _x, _y, dir);
+	sl->shot = array_join_shot(sl->shot, new_shot);
+	place_shot(sl, new_shot);
 }
 
 void	place_shot(t_solong *sl, t_shot *shot)
@@ -127,7 +137,6 @@ void	move_shot(t_solong *sl)
 // 	return (-1);
 // }
 
-
 // void	delete_shot_off(t_solong *sl)
 // {
 // 	int	i;
@@ -147,7 +156,7 @@ void	move_shot(t_solong *sl)
 // 	}
 // }
 
-t_shot	**array_remove(t_shot **array_shot, int	index)
+t_shot	**array_remove(t_shot **array_shot, int index)
 {
 	int		i;
 	t_shot	**new_array;
@@ -215,17 +224,18 @@ t_shot	**array_join_shot(t_shot **array_shot, t_shot *shot)
 	return (new_array);
 }
 
-t_shot	*create_shot(t_solong *sl)
+t_shot	*create_shot(t_solong *sl, int _x, int _y, char dir)
 {
 	t_shot	*shot;
 
 	shot = malloc(sizeof(t_shot));
 	shot->img = mlx_texture_to_image(sl->mlx, sl->texture[12]);
-	shot->x = sl->player->img->instances[0].x;
-	shot->y = sl->player->img->instances[0].y;
-	shot->direction = sl->player->direction;
+	shot->x = _x;
+	shot->y = _y;
+	shot->direction = dir;
 	shot->is_on = 1;
 	shot->width = 15;
 	shot->height = 15;
+	// ft_printf("Shot created !\n");
 	return (shot);
 }

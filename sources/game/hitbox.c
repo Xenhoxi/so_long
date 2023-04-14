@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 16:36:59 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/13 15:36:12 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/14 13:00:11 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,10 +110,10 @@ int	check_ennemy(t_solong *sl, int sx, int sy, int is_shot)
 		return (0);
 	while (sl->ennemy[i])
 	{
-		if (sx < (sl->ennemy[i]->x) + sl->ennemy[i]->width
-			&& sx + 15 > sl->ennemy[i]->x
-			&& sy < sl->ennemy[i]->y + sl->ennemy[i]->height
-			&& sy + 15 > sl->ennemy[i]->y
+		if (sx < (sl->ennemy[i]->x + sl->ennemy[i]->width)
+			&& (sx + 15) > sl->ennemy[i]->x
+			&& sy < (sl->ennemy[i]->y + sl->ennemy[i]->height)
+			&& (sy + 15) > sl->ennemy[i]->y
 			&& sl->ennemy[i]->is_on)
 		{
 			if (is_shot)

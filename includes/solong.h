@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 12:03:02 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/13 15:34:32 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/14 14:39:46 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,6 @@
 # include "libft/libft.h"
 # include "get_next_line/get_next_line.h"
 # include "MLX42/include/MLX42/MLX42.h"
-
-// static mlx_image_t	*g_image;
-
-// # define PERSON_RIGHT "./images/hitman_right.png"
 
 typedef struct s_player
 {
@@ -80,6 +76,7 @@ typedef struct s_ennemy
 	int			y;
 	int			health;
 	char		direction;
+	int			timer;
 	int			is_on;
 	int			height;
 	int			width;
@@ -133,13 +130,14 @@ void		change_direction(t_solong *sl, char direction);
 // game/gun.c
 void		shot(void *param);
 t_shot		**array_join_shot(t_shot **array_proj, t_shot *shot);
-t_shot		*create_shot(t_solong *sl);
+t_shot		*create_shot(t_solong *sl, int _x, int _y, char dir);
 void		move_shot(t_solong *sl);
 void		check_shot_validity(t_solong *sl);
 void		delete_shot_off(t_solong *sl);
 void		place_shot(t_solong *sl, t_shot *shot);
 void		free_array_struct(t_shot **array_shot);
 t_shot		**array_remove(t_shot **array_shot, int index);
+void		shot_a_shot(t_solong *sl, int _x, int _y, char dir);
 
 // game/ennemy.c
 void		create_ennemy(t_solong *sl);
@@ -148,6 +146,10 @@ t_ennemy	*init_ennemy(t_solong *sl, int _x, int _y);
 void		draw_ennemy(t_solong *sl);
 int			check_ennemy(t_solong *sl, int sx, int sy, int is_shot);
 void		ennemy(void	*param);
+char		check_direction(t_solong *sl, int _x, int _y);
+char		choose_direction(int *tab);
+int			player_in_view(t_solong *sl, t_ennemy *ennemy);
+int			fov_of_robot(t_solong *sl, t_ennemy *e);
 
 // game/init.c
 t_solong	*init_solong(void);

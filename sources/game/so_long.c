@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:28:48 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/13 17:50:08 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/14 13:05:15 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ void	ft_hook(void *param)
 {
 	t_solong	*sl;
 
-	sl = param;
+	sl = (t_solong *)param;
 	move(sl);
 	key_hook(sl);
 }
 
-void	init(t_solong *sl)
+void	init(t_solong *sl) 
 {
 	draw_map(sl);
 	draw_player(sl);
@@ -52,5 +52,6 @@ void	run(t_solong *sl)
 	mlx_loop_hook(sl->mlx, ft_hook, sl);
 	mlx_loop_hook(sl->mlx, shot, sl);
 	mlx_loop_hook(sl->mlx, ennemy, sl);
+	ft_printf("OK!\n");
 	mlx_loop(sl->mlx);
 }
