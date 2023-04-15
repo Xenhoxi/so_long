@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 13:39:06 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/11 12:23:42 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/15 03:36:40 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,15 @@ void	change_direction(t_solong *sl, char direction)
 
 void	change_img(t_solong *sl, int x, int y, int i)
 {
-	mlx_delete_image(sl->mlx, sl->player->img);
-	if (sl->player->is_armed == 0)
+	if (sl->player->img)
+		mlx_delete_image(sl->mlx, sl->player->img);
+	if (sl->player->is_armed == 0 || sl->player->health <= 0)
 		sl->player->img = mlx_texture_to_image(sl->mlx, sl->texture[i]);
 	else if (sl->player->is_armed == 1)
 	{
 		sl->player->img = mlx_texture_to_image(sl->mlx, sl->texture[i + 4]);
-		sl->player->width = 49;
-		sl->player->height = 49;
+		sl->player->width = 43;
+		sl->player->height = 43;
 	}
 	mlx_image_to_window(sl->mlx, sl->player->img, x, y);
 }

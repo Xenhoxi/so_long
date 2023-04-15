@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 14:17:45 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/13 15:35:14 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/15 17:18:38 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	check_up(t_solong *sl, int player_x, int player_y)
 		&& !check_ennemy(sl, player_x, player_y - 2, 0))
 	{
 		sl->player->img->instances[0].y -= 2;
+		sl->player->score += 2;
 		change_direction(sl, 'W');
 	}
 }
@@ -51,6 +52,7 @@ void	check_down(t_solong *sl, int player_x, int player_y)
 		&& !check_ennemy(sl, player_x, player_y + 2, 0))
 	{
 		sl->player->img->instances[0].y += 2;
+		sl->player->score += 2;
 		change_direction(sl, 'S');
 	}
 }
@@ -61,6 +63,7 @@ void	check_right(t_solong *sl, int player_x, int player_y)
 		&& !check_ennemy(sl, player_x + 2, player_y, 0))
 	{
 		sl->player->img->instances[0].x += 2;
+		sl->player->score += 2;
 		change_direction(sl, 'D');
 	}
 }
@@ -71,6 +74,7 @@ void	check_left(t_solong *sl, int player_x, int player_y)
 		&& !check_ennemy(sl, player_x - 2, player_y, 0))
 	{
 		sl->player->img->instances[0].x -= 2;
+		sl->player->score += 2;
 		change_direction(sl, 'A');
 	}
 }

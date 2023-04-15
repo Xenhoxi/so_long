@@ -34,6 +34,8 @@ SRCS =	ft_strlen.c \
 		ft_lstadd_back.c \
 		ft_lstdelfirst.c \
 		ft_lstdellast.c \
+		ft_itoa.c \
+		ft_strjoin.c \
 
 OBJS = $(SRCS:%.c=%.o)
 

@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:28:48 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/14 13:05:15 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/15 17:17:59 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,14 @@ void	ft_hook(void *param)
 	t_solong	*sl;
 
 	sl = (t_solong *)param;
-	move(sl);
+	if (sl->player->health > 0)
+		move(sl);
+	else
+		change_img(sl, sl->player->x, sl->player->y, 17);
 	key_hook(sl);
 }
 
-void	init(t_solong *sl) 
+void	init(t_solong *sl)
 {
 	draw_map(sl);
 	draw_player(sl);

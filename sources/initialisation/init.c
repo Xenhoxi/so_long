@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 14:31:25 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/14 00:56:24 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/15 17:17:26 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	texture_init(t_solong *sl)
 {
-	sl->texture = malloc(sizeof(mlx_texture_t *) * 18);
+	sl->texture = malloc(sizeof(mlx_texture_t *) * 19);
 	sl->texture[0] = mlx_load_png("./images/hitman_up.png");
 	sl->texture[1] = mlx_load_png("./images/hitman_down.png");
 	sl->texture[2] = mlx_load_png("./images/hitman_left.png");
@@ -32,7 +32,8 @@ void	texture_init(t_solong *sl)
 	sl->texture[14] = mlx_load_png("./images/robot_right.png");
 	sl->texture[15] = mlx_load_png("./images/robot_up.png");
 	sl->texture[16] = mlx_load_png("./images/robot_down.png");
-	sl->texture[17] = NULL;
+	sl->texture[17] = mlx_load_png("./images/blood.png");
+	sl->texture[18] = NULL;
 }
 
 t_solong	*init_solong(void)
@@ -46,10 +47,12 @@ t_solong	*init_solong(void)
 	sl->texture = NULL;
 	sl->shot = NULL;
 	sl->ennemy = NULL;
-	sl->player->height = 49;
-	sl->player->width = 49;
+	sl->player->height = 43;
+	sl->player->width = 43;
 	sl->player->is_armed = 0;
 	sl->player->timer = 0;
+	sl->player->health = 100;
+	sl->player->score = 0;
 	texture_init(sl);
 	return (sl);
 }

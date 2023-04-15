@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:57:14 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/14 13:18:25 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/14 19:39:23 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ void	check_shot_validity(t_solong *sl)
 					|| sl->shot[i]->y < 0
 					|| sl->shot[i]->y > sl->map->height_px
 					|| check_hitbox_shot(sl, sl->shot[i]->x, sl->shot[i]->y)
-					|| check_ennemy(sl, sl->shot[i]->x, sl->shot[i]->y, 1))
+					|| check_ennemy(sl, sl->shot[i]->x, sl->shot[i]->y, 1)
+					|| check_player(sl, sl->shot[i]->x, sl->shot[i]->y, 1))
 				{
 					sl->shot[i]->is_on = 0;
 					mlx_delete_image(sl->mlx, sl->shot[i]->img);

@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 12:03:02 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/14 14:39:46 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/15 17:17:31 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,13 @@ typedef struct s_player
 	mlx_image_t	*img;
 	int			x;
 	int			y;
+	int			health;
 	char		direction;
 	int			is_armed;
 	int			height;
 	int			width;
 	int			timer;
+	int			score;
 }			t_player;
 
 typedef struct s_collect
@@ -114,6 +116,7 @@ t_collect	*init_c(t_solong *sl, int x, int y, char type);
 int			check_hitbox(t_solong *sl, int player_x, int player_y);
 void		check_hitbox_c(void	*param);
 int			check_hitbox_shot(t_solong *sl, int player_x, int player_y);
+int			check_player(t_solong *sl, int sx, int sy, int is_shot);
 
 // game/move.c
 void		move(t_solong *sl);

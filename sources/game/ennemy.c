@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 15:39:08 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/14 16:56:45 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/15 03:00:07 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	ennemy(void	*param)
 		y = sl->ennemy[i]->y;
 		if (sl->ennemy[i]->is_on == 0)
 			mlx_delete_image(sl->mlx, sl->ennemy[i]->img);
-		else if (player_in_view(sl, sl->ennemy[i]) && sl->ennemy[i]->timer <= 0)
+		else if (player_in_view(sl, sl->ennemy[i]) && sl->ennemy[i]->timer <= 0
+			&& sl->player->health > 0)
 		{
 			shot_a_shot(sl, x, y, sl->ennemy[i]->direction);
 			sl->ennemy[i]->timer = 100;
@@ -65,7 +66,7 @@ int	player_in_view(t_solong *sl, t_ennemy *ennemy)
 	else if (ennemy->direction == 'W')
 	{
 		if (p_x < (ennemy->x + T_S)
-			&& p_x + sl->player->width > ennemy->x + T_S
+			&& p_x + sl->player->width > ennemy->x
 			&& p_y > (ennemy->y - nb_case * T_S)
 			&& p_y + sl->player->height < ennemy->y)
 			return (1);
@@ -73,9 +74,9 @@ int	player_in_view(t_solong *sl, t_ennemy *ennemy)
 	else if (ennemy->direction == 'S')
 	{
 		if (p_x < (ennemy->x + T_S)
-			&& p_x + sl->player->width > ennemy->x + T_S
+			&& (p_x + sl->player->width) > ennemy->x
 			&& p_y < (ennemy->y + nb_case * T_S)
-			&& p_y + sl->player->height > ennemy->y)
+			&& (p_y + sl->player->height) > ennemy->y)
 			return (1);
 	}
 	return (0);
@@ -95,16 +96,20 @@ int	fov_of_robot(t_solong *sl, t_ennemy *e)
 	x = e->x / T_S;
 	y = e->y / T_S;
 	if (e->direction == 'W')
-		while (map[y - ++i][x] == '0' || map[y - i][x] == 'C')
+		while (map[y - ++i][x] == '0' || map[y - i][x] == 'C'
+			|| map[y - i][x] == 'W')
 			nb_case++;
 	else if (e->direction == 'S')
-		while (map[y + ++i][x] == '0' || map[y + i][x] == 'C')
+		while (map[y + ++i][x] == '0' || map[y + i][x] == 'C'
+			|| map[y + i][x] == 'W')
 			nb_case++;
 	else if (e->direction == 'D')
-		while (map[y][x + ++i] == '0' || map[y][x + i] == 'C')
+		while (map[y][x + ++i] == '0' || map[y][x + i] == 'C'
+			|| map[y][x + i] == 'W')
 			nb_case++;
 	else if (e->direction == 'A')
-		while (map[y][x - ++i] == '0' || map[y][x - i] == 'C')
+		while (map[y][x - ++i] == '0' || map[y][x - i] == 'C'
+			|| map[y][x - i] == 'W')
 			nb_case++;
 	return (nb_case + 1);
 }
@@ -173,16 +178,16 @@ char	check_direction(t_solong *sl, int _x, int _y)
 	while (i < 4)
 		tab[i++] = 0;
 	i = _x;
-	while (map[_y][--i] == '0' || map[_y][i] == 'C')
+	while (map[_y][--i] == '0' || map[_y][i] == 'C' || map[_y][i] == 'W')
 		tab[0]++;
 	i = _x;
-	while (map[_y][++i] == '0' || map[_y][i] == 'C')
+	while (map[_y][++i] == '0' || map[_y][i] == 'C' || map[_y][i] == 'W')
 		tab[1]++;
 	i = _y;
-	while (map[--i][_x] == '0' || map[i][_x] == 'C')
+	while (map[--i][_x] == '0' || map[i][_x] == 'C' || map[i][_x] == 'W')
 		tab[2]++;
 	i = _y;
-	while (map[++i][_x] == '0' || map[i][_x] == 'C')
+	while (map[++i][_x] == '0' || map[i][_x] == 'C' || map[i][_x] == 'W')
 		tab[3]++;
 	return (choose_direction(tab));
 }
