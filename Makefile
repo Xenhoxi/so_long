@@ -6,7 +6,7 @@
 #    By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/23 12:22:07 by ljerinec          #+#    #+#              #
-#    Updated: 2023/04/16 01:04:30 by ljerinec         ###   ########.fr        #
+#    Updated: 2023/04/17 11:34:58 by ljerinec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ FLAGS    = -Wall -Wextra -Werror -fsanitize=address -g3
 CC       = gcc $(FLAGS)
 
 LIBFT_DIR = includes/libft/libft.a
-PRINTF_DIR = includes/libft/ft_printf/ft_printf.a
+PRINTF_DIR = includes/ft_printf/ft_printf.a
 # MLX42_INC = -lglfw -L /Users/ljerinec/.brew/Cellar/glfw/3.3.8/lib/
 MLX42_INC = -lglfw -L /opt/homebrew/Cellar/glfw/3.3.8/lib/
 MLX42_DIR = includes/MLX42/build/libmlx42.a
