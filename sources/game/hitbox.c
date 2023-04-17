@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 16:36:59 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/16 18:45:02 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/17 14:50:46 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ int	check_ennemy(t_solong *sl, int sx, int sy, int is_shot)
 		{
 			if (is_shot)
 			{
-				sl->ennemy[i]->health -= 26;
+				sl->ennemy[i]->health -= 20;
 				if (sl->ennemy[i]->health <= 0)
 					sl->ennemy[i]->is_on = 0;
 			}
@@ -140,7 +140,7 @@ int	check_player(t_solong *sl, int sx, int sy, int is_shot)
 	{
 		if (is_shot)
 		{
-			sl->player->health -= 26;
+			sl->player->health -= 110;
 			ft_printf("Player health : %d\n", sl->player->health);
 		}
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 15:39:08 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/16 16:46:42 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/17 13:36:21 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ennemy(void	*param)
 			&& sl->player->health > 0)
 		{
 			shot_a_shot(sl, x, y, sl->ennemy[i]->direction);
-			sl->ennemy[i]->timer = 100;
+			sl->ennemy[i]->timer = 5;
 		}
 		sl->ennemy[i]->timer--;
 		i++;
