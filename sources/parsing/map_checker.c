@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:27:55 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/13 15:29:55 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/15 20:32:25 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	checking(t_solong *sl)
 	char	**map;
 
 	map = sl->map->map;
-	if (map_checking(map) == 0)
+	if (map_checking(map) == 0 )
 		printf("Error\n");
 	else
 	{

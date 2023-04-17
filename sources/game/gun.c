@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:57:14 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/14 19:39:23 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/16 16:48:06 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	shot(void *param)
 	x = sl->player->img->instances[0].x;
 	y = sl->player->img->instances[0].y;
 	if (mlx_is_key_down(sl->mlx, MLX_KEY_SPACE) && sl->player->is_armed
-		&& sl->player->timer <= 0)
+		&& sl->player->timer <= 0 && sl->player->health > 0)
 	{
 		shot_a_shot(sl, x, y, sl->player->direction);
 		sl->player->timer = 10;

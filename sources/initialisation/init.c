@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 14:31:25 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/15 17:17:26 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/17 02:06:02 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	texture_init(t_solong *sl)
 {
-	sl->texture = malloc(sizeof(mlx_texture_t *) * 19);
+	sl->texture = malloc(sizeof(mlx_texture_t *) * 20);
 	sl->texture[0] = mlx_load_png("./images/hitman_up.png");
 	sl->texture[1] = mlx_load_png("./images/hitman_down.png");
 	sl->texture[2] = mlx_load_png("./images/hitman_left.png");
@@ -33,7 +33,8 @@ void	texture_init(t_solong *sl)
 	sl->texture[15] = mlx_load_png("./images/robot_up.png");
 	sl->texture[16] = mlx_load_png("./images/robot_down.png");
 	sl->texture[17] = mlx_load_png("./images/blood.png");
-	sl->texture[18] = NULL;
+	sl->texture[18] = mlx_load_png("./images/exit.png");
+	sl->texture[19] = NULL;
 }
 
 t_solong	*init_solong(void)

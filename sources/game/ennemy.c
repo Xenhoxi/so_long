@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 15:39:08 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/15 03:00:07 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/16 16:46:42 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ void	ennemy(void	*param)
 		x = sl->ennemy[i]->x;
 		y = sl->ennemy[i]->y;
 		if (sl->ennemy[i]->is_on == 0)
+		{
 			mlx_delete_image(sl->mlx, sl->ennemy[i]->img);
+			sl->ennemy[i]->img = NULL;
+		}
 		else if (player_in_view(sl, sl->ennemy[i]) && sl->ennemy[i]->timer <= 0
 			&& sl->player->health > 0)
 		{
@@ -97,19 +100,19 @@ int	fov_of_robot(t_solong *sl, t_ennemy *e)
 	y = e->y / T_S;
 	if (e->direction == 'W')
 		while (map[y - ++i][x] == '0' || map[y - i][x] == 'C'
-			|| map[y - i][x] == 'W')
+			|| map[y - i][x] == 'W' || map[y - i][x] == 'M')
 			nb_case++;
 	else if (e->direction == 'S')
 		while (map[y + ++i][x] == '0' || map[y + i][x] == 'C'
-			|| map[y + i][x] == 'W')
+			|| map[y + i][x] == 'W' || map[y + i][x] == 'M')
 			nb_case++;
 	else if (e->direction == 'D')
 		while (map[y][x + ++i] == '0' || map[y][x + i] == 'C'
-			|| map[y][x + i] == 'W')
+			|| map[y][x + i] == 'W' || map[y][x + i] == 'M')
 			nb_case++;
 	else if (e->direction == 'A')
 		while (map[y][x - ++i] == '0' || map[y][x - i] == 'C'
-			|| map[y][x - i] == 'W')
+			|| map[y][x - i] == 'W' || map[y][x - i] == 'M')
 			nb_case++;
 	return (nb_case + 1);
 }

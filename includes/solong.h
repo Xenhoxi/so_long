@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 12:03:02 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/15 17:17:31 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/17 01:41:23 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_player
 	int			width;
 	int			timer;
 	int			score;
+	mlx_image_t	*img_score;
 }			t_player;
 
 typedef struct s_collect
@@ -52,6 +53,7 @@ typedef struct s_collect
 typedef struct s_map
 {
 	char	**map;
+	int		exit_on;
 	int		x;
 	int		y;
 	int		height;
@@ -117,6 +119,7 @@ int			check_hitbox(t_solong *sl, int player_x, int player_y);
 void		check_hitbox_c(void	*param);
 int			check_hitbox_shot(t_solong *sl, int player_x, int player_y);
 int			check_player(t_solong *sl, int sx, int sy, int is_shot);
+int			check_ennemy(t_solong *sl, int sx, int sy, int is_shot);
 
 // game/move.c
 void		move(t_solong *sl);
@@ -147,7 +150,6 @@ void		create_ennemy(t_solong *sl);
 int			count_ennemy(char **map);
 t_ennemy	*init_ennemy(t_solong *sl, int _x, int _y);
 void		draw_ennemy(t_solong *sl);
-int			check_ennemy(t_solong *sl, int sx, int sy, int is_shot);
 void		ennemy(void	*param);
 char		check_direction(t_solong *sl, int _x, int _y);
 char		choose_direction(int *tab);

@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:28:48 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/15 17:17:59 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/17 02:08:44 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,25 @@ int	main(void)
 void	ft_hook(void *param)
 {
 	t_solong	*sl;
+	char		*str;
 
 	sl = (t_solong *)param;
+	str = ft_strjoin(" Score : ", ft_itoa(sl->player->score));
 	if (sl->player->health > 0)
 		move(sl);
 	else
+	{
 		change_img(sl, sl->player->x, sl->player->y, 17);
+		mlx_resize_image(sl->player->img, 49, 49);
+	}
+	if (sl->player->img_score == NULL)
+		sl->player->img_score = mlx_put_string(sl->mlx, str, 0, 0);
+	else
+	{
+		mlx_delete_image(sl->mlx, sl->player->img_score);
+		sl->player->img_score = mlx_put_string(sl->mlx, str, 0, 0);
+		mlx_resize_image(sl->player->img_score, 200, 40);
+	}
 	key_hook(sl);
 }
 

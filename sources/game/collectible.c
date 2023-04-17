@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:12:29 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/13 16:04:11 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/17 02:07:16 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,12 @@ t_collect	*init_c(t_solong *sl, int x, int y, char type)
 		collectible->x = x * T_S + 20;
 		collectible->y = y * T_S + 25;
 	}
+	if (type == 'E')
+	{
+		collectible->img = mlx_texture_to_image(sl->mlx, sl->texture[18]);
+		collectible->x = x * T_S;
+		collectible->y = y * T_S;
+	}
 	collectible->type = type;
 	collectible->is_collected = 0;
 	collectible->current_img = 0;
@@ -89,7 +95,7 @@ void	create_c(t_solong *sl)
 
 char	is_c(char type)
 {
-	if (type == 'C' || type == 'W')
+	if (type == 'C' || type == 'W' || type == 'E')
 		return (type);
 	else
 		return (-1);
