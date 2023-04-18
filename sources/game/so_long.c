@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:28:48 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/17 14:35:12 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/18 14:53:31 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	ft_hook(void *param)
 
 	sl = (t_solong *)param;
 	str = ft_strjoin(" Score : ", ft_itoa(sl->player->score));
-	if (sl->player->health > 0)
+	if (sl->player->health > 0 && sl->game_on)
 		move(sl);
-	else
+	else if (sl->player->health < 0)
 	{
 		change_img(sl, sl->player->x, sl->player->y, 17);
 		mlx_resize_image(sl->player->img, 49, 49);
@@ -64,10 +64,10 @@ void	run(t_solong *sl)
 	if (!sl->mlx)
 		exit(EXIT_FAILURE);
 	init(sl);
-	mlx_loop_hook(sl->mlx, check_hitbox_c, sl);
+	mlx_loop_hook(sl->mlx, collectible, sl);
 	mlx_loop_hook(sl->mlx, ft_hook, sl);
-	mlx_loop_hook(sl->mlx, shot, sl);
 	mlx_loop_hook(sl->mlx, ennemy, sl);
+	mlx_loop_hook(sl->mlx, shot, sl);
 	ft_printf("OK!\n");
 	mlx_loop(sl->mlx);
 }

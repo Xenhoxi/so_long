@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 12:03:02 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/17 14:40:00 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/18 14:30:37 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_player
 	int			timer;
 	int			score;
 	mlx_image_t	*img_score;
+	int			nb_collec;
 }			t_player;
 
 typedef struct s_collect
@@ -95,6 +96,7 @@ typedef struct s_solong
 	t_collect		**collectible;
 	t_shot			**shot;
 	t_ennemy		**ennemy;
+	int				game_on;
 }			t_solong;
 
 // so_long.cs
@@ -108,6 +110,7 @@ void		draw_map(t_solong *sl);
 void		draw_player(t_solong *sl);
 
 // game/collectible.c
+void		collectible(void *param);
 int			count_c(char **map);
 void		create_c(t_solong *sl);
 char		is_c(char type);
@@ -116,7 +119,8 @@ t_collect	*init_c(t_solong *sl, int x, int y, char type);
 
 // game/hibox.c
 int			check_hitbox(t_solong *sl, int player_x, int player_y);
-void		check_hitbox_c(void	*param);
+void		check_hitbox_c(t_solong	*sl);
+void		collect(t_solong *sl, int i);
 int			check_hitbox_shot(t_solong *sl, int player_x, int player_y);
 int			check_player(t_solong *sl, int sx, int sy, int is_shot);
 int			check_ennemy(t_solong *sl, int sx, int sy, int is_shot);

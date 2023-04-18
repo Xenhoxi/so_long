@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 16:36:59 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/17 14:50:46 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/18 14:49:55 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,13 @@ int	check_hitbox(t_solong *sl, int player_x, int player_y)
 	return (0);
 }
 
-void	check_hitbox_c(void *param)
+void	check_hitbox_c(t_solong *sl)
 {
 	int			i;
 	int			nb_c;
 	int			player_x;
 	int			player_y;
-	t_solong	*sl;
 
-	sl = (t_solong *)param;
 	player_x = sl->player->img->instances[0].x;
 	player_y = sl->player->img->instances[0].y;
 	nb_c = count_c(sl->map->map);
@@ -60,15 +58,33 @@ void	check_hitbox_c(void *param)
 			&& player_y + sl->player->height > sl->collectible[i]->y
 			&& mlx_is_key_down(sl->mlx, MLX_KEY_E))
 		{
-			sl->collectible[i]->is_collected = 1;
-			mlx_delete_image(sl->mlx, sl->collectible[i]->img);
-			if (sl->collectible[i]->type == 'W')
-			{
-				sl->player->is_armed = 1;
-				change_direction(sl, sl->player->direction);
-			}
+			collect(sl, i);
 		}
 		i++;
+	}
+}
+
+void	collect(t_solong *sl, int i)
+{
+	if (sl->collectible[i]->type == 'W')
+	{
+		sl->player->is_armed = 1;
+		change_direction(sl, sl->player->direction);
+		mlx_delete_image(sl->mlx, sl->collectible[i]->img);
+	}
+	else if (sl->collectible[i]->type == 'C'
+		&& sl->collectible[i]->is_collected == 0)
+	{
+		sl->player->nb_collec++;
+		sl->collectible[i]->is_collected = 1;
+		mlx_delete_image(sl->mlx, sl->collectible[i]->img);
+	}
+	else if (sl->collectible[i]->type == 'E'
+		&& sl->collectible[i]->is_collected == 0)
+	{
+		sl->collectible[i]->is_collected = 1;
+		sl->game_on = 0;
+		mlx_delete_image(sl->mlx, sl->player->img);
 	}
 }
 
@@ -118,7 +134,7 @@ int	check_ennemy(t_solong *sl, int sx, int sy, int is_shot)
 		{
 			if (is_shot)
 			{
-				sl->ennemy[i]->health -= 20;
+				sl->ennemy[i]->health -= 26;
 				if (sl->ennemy[i]->health <= 0)
 					sl->ennemy[i]->is_on = 0;
 			}

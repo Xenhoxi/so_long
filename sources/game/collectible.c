@@ -6,11 +6,37 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:12:29 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/17 14:46:44 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/18 14:48:27 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/solong.h"
+
+void	collectible(void *param)
+{
+	t_solong	*sl;
+	int			i;
+	int			nb_c;
+
+	sl = (t_solong *)param;
+	i = 0;
+	nb_c = count_c(sl->map->map);
+	check_hitbox_c(sl);
+	ft_printf("nb c : %d\n", nb_c);
+	ft_printf("nb c col : %d", sl->player->nb_collec);
+	while (i < nb_c)
+	{
+		if (nb_c - 2 == sl->player->nb_collec
+			&& sl->collectible[i]->type == 'E'
+			&& sl->collectible[i]->is_collected == -1)
+		{
+			mlx_image_to_window(sl->mlx, sl->collectible[i]->img,
+				sl->collectible[i]->x, sl->collectible[i]->y);
+			sl->collectible[i]->is_collected = 0;
+		}
+		i++;
+	}
+}
 
 int	count_c(char **map)
 {
@@ -41,25 +67,22 @@ t_collect	*init_c(t_solong *sl, int x, int y, char type)
 
 	collectible = malloc(sizeof(t_collect));
 	if (type == 'C')
-	{
 		collectible->img = mlx_texture_to_image(sl->mlx, sl->texture[10]);
-		collectible->x = x * T_S;
-		collectible->y = y * T_S;
-	}
+	collectible->x = x * T_S;
+	collectible->y = y * T_S;
 	if (type == 'W')
 	{
 		collectible->img = mlx_texture_to_image(sl->mlx, sl->texture[11]);
 		collectible->x = x * T_S + 20;
 		collectible->y = y * T_S + 25;
 	}
+	collectible->is_collected = 0;
 	if (type == 'E')
 	{
 		collectible->img = mlx_texture_to_image(sl->mlx, sl->texture[18]);
-		collectible->x = x * T_S;
-		collectible->y = y * T_S;
+		collectible->is_collected = -1;
 	}
 	collectible->type = type;
-	collectible->is_collected = 0;
 	collectible->current_img = 0;
 	return (collectible);
 }
@@ -110,7 +133,8 @@ void	draw_c(t_solong *sl)
 	count = count_c(sl->map->map);
 	while (i < count)
 	{
-		if (sl->collectible[i]->is_collected == 0)
+		if (sl->collectible[i]->is_collected == 0
+			&& sl->collectible[i]->type != 'E')
 			mlx_image_to_window(sl->mlx, sl->collectible[i]->img,
 				sl->collectible[i]->x, sl->collectible[i]->y);
 		i++;
