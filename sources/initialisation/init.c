@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 14:31:25 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/18 14:35:45 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/19 01:57:33 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_solong	*init_solong(void)
 	sl->player->width = 43;
 	sl->player->is_armed = 0;
 	sl->player->timer = 0;
-	sl->player->health = 10000000;
+	sl->player->health = 100;
 	sl->player->score = 0;
 	sl->player->nb_collec = 0;
 	texture_init(sl);

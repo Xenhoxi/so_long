@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 00:19:04 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/05 13:25:42 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/19 02:59:30 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int	coord_is_possible(char **map)
 	}
 	if (check_all(map, int_map) == 0)
 		return (0);
+	free_int_map(int_map, map);
 	return (1);
 }
 
@@ -98,12 +99,14 @@ void	find_spawn(char **map, int *x, int *y)
 	}
 }
 
-void	free_int_map(int **int_map)
+void	free_int_map(int **int_map, char **map)
 {
 	int	i;
+	int	nb_line;
 
+	nb_line = array_len(map);
 	i = 0;
-	while (int_map[i])
+	while (i < nb_line)
 	{
 		free(int_map[i]);
 		i++;

@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 16:36:59 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/18 14:49:55 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/19 01:50:02 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,26 +46,31 @@ void	check_hitbox_c(t_solong *sl)
 	int			player_x;
 	int			player_y;
 
-	player_x = sl->player->img->instances[0].x;
-	player_y = sl->player->img->instances[0].y;
-	nb_c = count_c(sl->map->map);
-	i = 0;
-	while (i < nb_c)
+	if (sl->game_on)
 	{
-		if (player_x < (sl->collectible[i]->x) + T_S
-			&& player_x + sl->player->width > sl->collectible[i]->x
-			&& player_y < sl->collectible[i]->y + T_S
-			&& player_y + sl->player->height > sl->collectible[i]->y
-			&& mlx_is_key_down(sl->mlx, MLX_KEY_E))
+		player_x = sl->player->img->instances[0].x;
+		player_y = sl->player->img->instances[0].y;
+		nb_c = count_c(sl->map->map);
+		i = 0;
+		while (i < nb_c)
 		{
-			collect(sl, i);
+			if (player_x < (sl->collectible[i]->x) + T_S
+				&& player_x + sl->player->width > sl->collectible[i]->x
+				&& player_y < sl->collectible[i]->y + T_S
+				&& player_y + sl->player->height > sl->collectible[i]->y
+				&& mlx_is_key_down(sl->mlx, MLX_KEY_E))
+			{
+				collect(sl, i);
+			}
+			i++;
 		}
-		i++;
 	}
 }
 
 void	collect(t_solong *sl, int i)
 {
+	mlx_image_t	*img;
+
 	if (sl->collectible[i]->type == 'W')
 	{
 		sl->player->is_armed = 1;
@@ -85,6 +90,8 @@ void	collect(t_solong *sl, int i)
 		sl->collectible[i]->is_collected = 1;
 		sl->game_on = 0;
 		mlx_delete_image(sl->mlx, sl->player->img);
+		img = mlx_put_string(sl->mlx, "You WIN !", sl->map->width_px / 2 - 200, sl->map->height_px / 2 - 40);
+		mlx_resize_image(img, 400, 80);
 	}
 }
 

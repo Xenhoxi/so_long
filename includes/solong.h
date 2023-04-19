@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 12:03:02 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/18 14:30:37 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/19 03:42:51 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,13 +109,27 @@ void		run(t_solong *solong);
 void		draw_map(t_solong *sl);
 void		draw_player(t_solong *sl);
 
+// game/free_all.c
+void		free_all(t_solong *sl);
+void		free_ennemy(t_solong *sl);
+void		free_collectible(t_solong *sl);
+void		free_shot(t_solong *sl);
+void		free_map(t_solong *sl);
+void		free_textures(t_solong *sl);
+
+// game/free_all.c
+void		free_solong(t_solong *sl);
+
 // game/collectible.c
-void		collectible(void *param);
 int			count_c(char **map);
+void		collectible(void *param);
+int			count_spec_c(char **map, char type);
 void		create_c(t_solong *sl);
+t_collect	*init_c(t_solong *sl, int x, int y, char type);
+
+// game/collectible_2.c
 char		is_c(char type);
 void		draw_c(t_solong *sl);
-t_collect	*init_c(t_solong *sl, int x, int y, char type);
 
 // game/hibox.c
 int			check_hitbox(t_solong *sl, int player_x, int player_y);
@@ -181,7 +195,7 @@ int			map_exit(char **map);
 int			map_collectible(char **map);
 int			coord_is_possible(char **map);
 void		find_spawn(char **map, int *x, int *y);
-void		free_int_map(int **int_map);
+void		free_int_map(int **int_map, char **map);
 
 // parsing/map_checker_3.c
 int			check_side(int **int_map, int x, int y);
