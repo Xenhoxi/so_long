@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:28:48 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/20 13:09:40 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/20 14:40:45 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,7 @@ void	run(t_solong *sl)
 	mlx_loop_hook(sl->mlx, delta_time, sl);
 	mlx_loop(sl->mlx);
 	free_all(sl);
+	mlx_terminate(sl->mlx);
+	free(sl);
 	ft_printf("OK!\n");
 }

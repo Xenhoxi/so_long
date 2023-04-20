@@ -6,7 +6,7 @@
 #    By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/23 12:22:07 by ljerinec          #+#    #+#              #
-#    Updated: 2023/04/20 13:04:54 by ljerinec         ###   ########.fr        #
+#    Updated: 2023/04/20 14:27:25 by ljerinec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ SRCS =	sources/game/so_long.c \
 
 OBJS := $(SRCS:%.c=%.o)
 
-FLAGS    = -Wall -Wextra -Werror -fsanitize=address -g3
+FLAGS    = -Wall -Wextra -Werror -g3
 CC       = gcc $(FLAGS)
 
 LIBFT_DIR = includes/libft/libft.a

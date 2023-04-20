@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 13:04:24 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/20 13:04:42 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/20 14:40:31 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	free_all(t_solong *sl)
 	free_shot(sl);
 	free_solong(sl);
 	free_textures(sl);
-	free(sl);
 }
 
 void	free_map(t_solong *sl)
