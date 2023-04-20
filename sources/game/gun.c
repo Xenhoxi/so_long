@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:57:14 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/19 02:44:09 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/20 12:30:58 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	shot(void *param)
 			&& sl->player->timer <= 0 && sl->player->health > 0)
 		{
 			shot_a_shot(sl, x, y, sl->player->direction);
-			sl->player->timer = 10;
+			sl->player->timer = 1;
 		}
 		if (!mlx_is_key_down(sl->mlx, MLX_KEY_SPACE) && sl->player->timer >= 0)
 			sl->player->timer--;
@@ -50,12 +50,12 @@ void	place_shot(t_solong *sl, t_shot *shot)
 	if (shot->direction == 'W')
 	{
 		shot->x += 24;
-		shot->y -= 10;
+		shot->y -= 15;
 	}
 	else if (shot->direction == 'S')
 	{
 		shot->x += 4;
-		shot->y += 45;
+		shot->y += 50;
 	}
 	else if (shot->direction == 'D')
 	{
@@ -110,13 +110,13 @@ void	move_shot(t_solong *sl)
 			if (sl->shot[i]->is_on)
 			{
 				if (sl->shot[i]->direction == 'W')
-					sl->shot[i]->y -= 10;
+					sl->shot[i]->y -= 1250 * sl->dt;
 				if (sl->shot[i]->direction == 'S')
-					sl->shot[i]->y += 10;
+					sl->shot[i]->y += 1250 * sl->dt;
 				if (sl->shot[i]->direction == 'D')
-					sl->shot[i]->x += 10;
+					sl->shot[i]->x += 1250 * sl->dt;
 				if (sl->shot[i]->direction == 'A')
-					sl->shot[i]->x -= 10;
+					sl->shot[i]->x -= 1250 * sl->dt;
 				sl->shot[i]->img->instances[0].x = sl->shot[i]->x;
 				sl->shot[i]->img->instances[0].y = sl->shot[i]->y;
 			}
@@ -124,38 +124,3 @@ void	move_shot(t_solong *sl)
 		}
 	}
 }
-
-// int	find_shot_off(t_solong *sl)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	if (sl->shot)
-// 	{
-// 		while (sl->shot[i])
-// 		{
-// 			if (sl->shot[i]->is_on == 0)
-// 				return (i);
-// 		}
-// 	}
-// 	return (-1);
-// }
-
-// void	delete_shot_off(t_solong *sl)
-// {
-// 	int	i;
-// 	// int	index;
-
-// 	// index = find_shot_off(sl);
-// 	i = 0;
-// 	if (sl->shot)
-// 	{
-// 		while (sl->shot[i])
-// 		{
-// 			if (sl->shot[i]->is_on == 0)
-// 				// array_remove(sl->shot, index);
-// 				ft_printf("remove\n");
-// 			i++;
-// 		}
-// 	}
-// }

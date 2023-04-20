@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 15:39:08 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/19 02:38:04 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/20 14:14:28 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,23 +47,21 @@ int	player_in_view(t_solong *sl, t_ennemy *ennemy)
 	int	p_y;
 	int	nb_case;
 
-	nb_case = fov_of_robot(sl, ennemy);
+	nb_case = fov_of_robot(ennemy, 1, sl->map->map);
 	p_x = sl->player->img->instances[0].x;
 	p_y = sl->player->img->instances[0].y;
 	if (ennemy->direction == 'D')
 	{
 		if (p_x < (ennemy->x + nb_case * T_S)
 			&& p_x + sl->player->width > ennemy->x + T_S
-			&& p_y < ennemy->y + T_S
-			&& p_y + sl->player->height > ennemy->y)
+			&& p_y < ennemy->y + T_S && p_y + sl->player->height > ennemy->y)
 			return (1);
 	}
 	else if (ennemy->direction == 'A')
 	{
 		if (p_x > (ennemy->x - nb_case * T_S)
 			&& p_x + sl->player->width < (ennemy->x + T_S)
-			&& p_y < ennemy->y + T_S
-			&& p_y + sl->player->height > ennemy->y)
+			&& p_y < ennemy->y + T_S && p_y + sl->player->height > ennemy->y)
 			return (1);
 	}
 	else if (ennemy->direction == 'W')
@@ -85,34 +83,29 @@ int	player_in_view(t_solong *sl, t_ennemy *ennemy)
 	return (0);
 }
 
-int	fov_of_robot(t_solong *sl, t_ennemy *e)
+int	fov_of_robot(t_ennemy *e, int i, char **map)
 {
 	int		nb_case;
-	char	**map;
-	int		i;
-	int		x;
-	int		y;
+	int		t[2];
 
-	i = 1;
-	map = sl->map->map;
 	nb_case = 1;
-	x = e->x / T_S;
-	y = e->y / T_S;
+	t[0] = e->x / T_S;
+	t[1] = e->y / T_S;
 	if (e->direction == 'W')
-		while (map[y - ++i][x] == '0' || map[y - i][x] == 'C'
-			|| map[y - i][x] == 'W' || map[y - i][x] == 'M')
+		while (map[t[1] - ++i][t[0]] == '0' || map[t[1] - i][t[0]] == 'C'
+			|| map[t[1] - i][t[0]] == 'W' || map[t[1] - i][t[0]] == 'M')
 			nb_case++;
 	else if (e->direction == 'S')
-		while (map[y + ++i][x] == '0' || map[y + i][x] == 'C'
-			|| map[y + i][x] == 'W' || map[y + i][x] == 'M')
+		while (map[t[1] + ++i][t[0]] == '0' || map[t[1] + i][t[0]] == 'C'
+			|| map[t[1] + i][t[0]] == 'W' || map[t[1] + i][t[0]] == 'M')
 			nb_case++;
 	else if (e->direction == 'D')
-		while (map[y][x + ++i] == '0' || map[y][x + i] == 'C'
-			|| map[y][x + i] == 'W' || map[y][x + i] == 'M')
+		while (map[t[1]][t[0] + ++i] == '0' || map[t[1]][t[0] + i] == 'C'
+			|| map[t[1]][t[0] + i] == 'W' || map[t[1]][t[0] + i] == 'M')
 			nb_case++;
 	else if (e->direction == 'A')
-		while (map[y][x - ++i] == '0' || map[y][x - i] == 'C'
-			|| map[y][x - i] == 'W' || map[y][x - i] == 'M')
+		while (map[t[1]][t[0] - ++i] == '0' || map[t[1]][t[0] - i] == 'C'
+			|| map[t[1]][t[0] - i] == 'W' || map[t[1]][t[0] - i] == 'M')
 			nb_case++;
 	return (nb_case + 1);
 }

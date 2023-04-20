@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 16:36:59 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/19 01:50:02 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/20 13:12:08 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,34 +64,6 @@ void	check_hitbox_c(t_solong *sl)
 			}
 			i++;
 		}
-	}
-}
-
-void	collect(t_solong *sl, int i)
-{
-	mlx_image_t	*img;
-
-	if (sl->collectible[i]->type == 'W')
-	{
-		sl->player->is_armed = 1;
-		change_direction(sl, sl->player->direction);
-		mlx_delete_image(sl->mlx, sl->collectible[i]->img);
-	}
-	else if (sl->collectible[i]->type == 'C'
-		&& sl->collectible[i]->is_collected == 0)
-	{
-		sl->player->nb_collec++;
-		sl->collectible[i]->is_collected = 1;
-		mlx_delete_image(sl->mlx, sl->collectible[i]->img);
-	}
-	else if (sl->collectible[i]->type == 'E'
-		&& sl->collectible[i]->is_collected == 0)
-	{
-		sl->collectible[i]->is_collected = 1;
-		sl->game_on = 0;
-		mlx_delete_image(sl->mlx, sl->player->img);
-		img = mlx_put_string(sl->mlx, "You WIN !", sl->map->width_px / 2 - 200, sl->map->height_px / 2 - 40);
-		mlx_resize_image(img, 400, 80);
 	}
 }
 

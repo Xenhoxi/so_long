@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 03:44:57 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/20 11:13:54 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/20 13:04:38 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,18 +81,4 @@ void	free_solong(t_solong *sl)
 	mlx_delete_image(sl->mlx, sl->player->img);
 	mlx_delete_image(sl->mlx, sl->player->img_score);
 	free(sl->player);
-}
-
-void	free_map(t_solong *sl)
-{
-	int	i;
-
-	i = 0;
-	while (sl->map->map[i])
-	{
-		free(sl->map->map[i]);
-		i++;
-	}
-	free(sl->map->map);
-	free(sl->map);
 }
