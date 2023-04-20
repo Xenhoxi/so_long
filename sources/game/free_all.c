@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 03:44:57 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/19 03:56:56 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/20 11:13:54 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,18 @@ void	free_shot(t_solong *sl)
 	int	i;
 
 	i = 0;
-	while (sl->shot[i] && sl->shot)
+	if (sl->shot)
 	{
-		if (sl->shot[i]->img)
-			mlx_delete_image(sl->mlx, sl->shot[i]->img);
-		free(sl->shot[i]);
-		i++;
+		while (sl->shot[i])
+		{
+			if (sl->shot[i]->img)
+				mlx_delete_image(sl->mlx, sl->shot[i]->img);
+			if (sl->shot[i])
+				free(sl->shot[i]);
+			i++;
+		}
+		free(sl->shot);
 	}
-	free(sl->shot);
 }
 
 void	free_solong(t_solong *sl)

@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:28:48 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/19 03:54:21 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/20 11:14:43 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_hook(void *param)
 	{
 		change_img(sl, sl->player->x, sl->player->y, 17);
 		mlx_resize_image(sl->player->img, 49, 49);
-		img = mlx_put_string(sl->mlx, "LOSEUR !", sl->map->width_px / 2 - 200, sl->map->height_px / 2 - 40);
+		img = mlx_put_string(sl->mlx, "LOSEUR", sl->map->width_px / 2 - 200, sl->map->height_px / 2 - 40);
 		mlx_resize_image(img, 400, 80);
 		sl->game_on = 0;
 	}
@@ -64,6 +64,21 @@ void	init(t_solong *sl)
 	draw_c(sl);
 }
 
+void	delta_time(void *param)
+{
+	t_solong	*sl;
+	double		current_time;
+	double		fps;
+
+	fps = 60;
+	sl = (t_solong *)param;
+	current_time = mlx_get_time();
+	sl->dt = current_time - sl->prev_dt;
+	sl->prev_dt = current_time;
+	printf("dt = %f\n", sl->dt);
+	usleep((1.0 / fps - sl->dt) * 1000000);
+}
+
 void	run(t_solong *sl)
 {
 	sl->mlx = mlx_init(sl->map->width_px, sl->map->height_px, "so_long", true);
@@ -74,6 +89,7 @@ void	run(t_solong *sl)
 	mlx_loop_hook(sl->mlx, ft_hook, sl);
 	mlx_loop_hook(sl->mlx, ennemy, sl);
 	mlx_loop_hook(sl->mlx, shot, sl);
+	mlx_loop_hook(sl->mlx, delta_time, sl);
 	mlx_loop(sl->mlx);
 	free_all(sl);
 	ft_printf("OK!\n");

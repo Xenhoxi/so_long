@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 12:03:02 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/19 03:42:51 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/20 11:05:57 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ typedef struct s_solong
 	t_shot			**shot;
 	t_ennemy		**ennemy;
 	int				game_on;
+	double			dt;
+	double			prev_dt;
 }			t_solong;
 
 // so_long.cs

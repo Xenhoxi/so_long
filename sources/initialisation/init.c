@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 14:31:25 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/19 01:57:33 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/20 11:07:34 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ t_solong	*init_solong(void)
 	sl->shot = NULL;
 	sl->ennemy = NULL;
 	sl->game_on = 1;
+	sl->dt = 0;
+	sl->prev_dt = 0;
 	sl->player->height = 43;
 	sl->player->width = 43;
 	sl->player->is_armed = 0;
