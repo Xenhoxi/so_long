@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 14:17:45 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/20 12:08:47 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/21 00:47:58 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ void	move(t_solong *sl)
 
 void	check_up(t_solong *sl, int player_x, int player_y)
 {
-	if (!check_hitbox(sl, player_x, player_y - 250 * sl->dt)
-		&& !check_ennemy(sl, player_x, player_y - 250 * sl->dt, 0))
+	if (!check_hitbox(sl, player_x, player_y - (200 * sl->dt))
+		&& !check_ennemy(sl, player_x, player_y - (200 * sl->dt), 0))
 	{
-		sl->player->img->instances[0].y -= 250 * sl->dt;
-		sl->player->score += 250 * sl->dt;
+		sl->player->img->instances[0].y -= (200 * sl->dt);
+		sl->player->score += (200 * sl->dt);
 		if (sl->player->direction != 'W')
 			change_direction(sl, 'W');
 	}
@@ -49,11 +49,11 @@ void	check_up(t_solong *sl, int player_x, int player_y)
 
 void	check_down(t_solong *sl, int player_x, int player_y)
 {
-	if (!check_hitbox(sl, player_x, player_y + 250 * sl->dt)
-		&& !check_ennemy(sl, player_x, player_y + 250 * sl->dt, 0))
+	if (!check_hitbox(sl, player_x, player_y + (200 * sl->dt))
+		&& !check_ennemy(sl, player_x, player_y + (200 * sl->dt), 0))
 	{
-		sl->player->img->instances[0].y += 250 * sl->dt;
-		sl->player->score += 250 * sl->dt;
+		sl->player->img->instances[0].y += (200 * sl->dt);
+		sl->player->score += (200 * sl->dt);
 		if (sl->player->direction != 'S')
 			change_direction(sl, 'S');
 	}
@@ -61,11 +61,11 @@ void	check_down(t_solong *sl, int player_x, int player_y)
 
 void	check_right(t_solong *sl, int player_x, int player_y)
 {
-	if (!check_hitbox(sl, player_x + 250 * sl->dt, player_y)
-		&& !check_ennemy(sl, player_x + 250 * sl->dt, player_y, 0))
+	if (!check_hitbox(sl, player_x + (200 * sl->dt), player_y)
+		&& !check_ennemy(sl, player_x + (200 * sl->dt), player_y, 0))
 	{
-		sl->player->img->instances[0].x += 250 * sl->dt;
-		sl->player->score += 250 * sl->dt;
+		sl->player->img->instances[0].x += (200 * sl->dt);
+		sl->player->score += (200 * sl->dt);
 		if (sl->player->direction != 'D')
 			change_direction(sl, 'D');
 	}
@@ -73,11 +73,11 @@ void	check_right(t_solong *sl, int player_x, int player_y)
 
 void	check_left(t_solong *sl, int player_x, int player_y)
 {
-	if (!check_hitbox(sl, player_x - 250 * sl->dt, player_y)
-		&& !check_ennemy(sl, player_x - 250 * sl->dt, player_y, 0))
+	if (!check_hitbox(sl, player_x - (200 * sl->dt), player_y)
+		&& !check_ennemy(sl, player_x - (200 * sl->dt), player_y, 0))
 	{
-		sl->player->img->instances[0].x -= 250 * sl->dt;
-		sl->player->score += 250 * sl->dt;
+		sl->player->img->instances[0].x -= (200 * sl->dt);
+		sl->player->score += (200 * sl->dt);
 		if (sl->player->direction != 'A')
 			change_direction(sl, 'A');
 	}

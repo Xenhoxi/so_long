@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:57:14 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/20 12:30:58 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/21 00:48:57 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	place_shot(t_solong *sl, t_shot *shot)
 	}
 	else if (shot->direction == 'A')
 	{
-		shot->x -= 10;
+		shot->x -= 15;
 		shot->y += 4;
 	}
 	mlx_image_to_window(sl->mlx, shot->img, shot->x, shot->y);
@@ -110,13 +110,13 @@ void	move_shot(t_solong *sl)
 			if (sl->shot[i]->is_on)
 			{
 				if (sl->shot[i]->direction == 'W')
-					sl->shot[i]->y -= 1250 * sl->dt;
+					sl->shot[i]->y -= (1000 * sl->dt);
 				if (sl->shot[i]->direction == 'S')
-					sl->shot[i]->y += 1250 * sl->dt;
+					sl->shot[i]->y += (1000 * sl->dt);
 				if (sl->shot[i]->direction == 'D')
-					sl->shot[i]->x += 1250 * sl->dt;
+					sl->shot[i]->x += (1000 * sl->dt);
 				if (sl->shot[i]->direction == 'A')
-					sl->shot[i]->x -= 1250 * sl->dt;
+					sl->shot[i]->x -= (1000 * sl->dt);
 				sl->shot[i]->img->instances[0].x = sl->shot[i]->x;
 				sl->shot[i]->img->instances[0].y = sl->shot[i]->y;
 			}

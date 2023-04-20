@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 01:23:10 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/20 13:10:10 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/21 00:16:30 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	losing_screen(t_solong *sl)
 	y = sl->map->height_px / 2 - 40;
 	change_img(sl, sl->player->x, sl->player->y, 17);
 	mlx_resize_image(sl->player->img, 49, 49);
-	img = mlx_put_string(sl->mlx, "LOSEUR", x, y);
+	img = mlx_put_string(sl->mlx, "GAME OVER", x, y);
 	mlx_resize_image(img, 400, 80);
 	sl->game_on = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:28:48 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/20 14:40:45 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/21 00:46:29 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,11 @@ void	delta_time(void *param)
 {
 	t_solong	*sl;
 	double		current_time;
-	double		fps;
 
-	fps = 60;
 	sl = (t_solong *)param;
 	current_time = mlx_get_time();
-	sl->dt = current_time - sl->prev_dt;
+	if (current_time - sl->prev_dt > 0.01)
+		sl->dt = current_time - sl->prev_dt;
 	sl->prev_dt = current_time;
 }
 
