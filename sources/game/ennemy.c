@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 15:39:08 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/20 15:52:07 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/21 15:33:26 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ennemy(void	*param)
 			&& sl->player->health > 0)
 		{
 			shot_a_shot(sl, x, y, sl->ennemy[i]->direction);
-			sl->ennemy[i]->timer = 100;
+			sl->ennemy[i]->timer = 50;
 		}
 		sl->ennemy[i]->timer--;
 		i++;
@@ -51,35 +51,17 @@ int	player_in_view(t_solong *sl, t_ennemy *ennemy)
 	p_x = sl->player->img->instances[0].x;
 	p_y = sl->player->img->instances[0].y;
 	if (ennemy->direction == 'D')
-	{
-		if (p_x < (ennemy->x + nb_case * T_S)
-			&& p_x + sl->player->width > ennemy->x + T_S
-			&& p_y < ennemy->y + T_S && p_y + sl->player->height > ennemy->y)
+		if (check_d(sl, ennemy, nb_case) == 1)
 			return (1);
-	}
-	else if (ennemy->direction == 'A')
-	{
-		if (p_x > (ennemy->x - nb_case * T_S)
-			&& p_x + sl->player->width < (ennemy->x + T_S)
-			&& p_y < ennemy->y + T_S && p_y + sl->player->height > ennemy->y)
+	if (ennemy->direction == 'A')
+		if (check_d(sl, ennemy, nb_case) == 1)
 			return (1);
-	}
-	else if (ennemy->direction == 'W')
-	{
-		if (p_x < (ennemy->x + T_S)
-			&& p_x + sl->player->width > ennemy->x
-			&& p_y > (ennemy->y - nb_case * T_S)
-			&& p_y + sl->player->height < ennemy->y)
+	if (ennemy->direction == 'W')
+		if (check_w(sl, ennemy, nb_case) == 1)
 			return (1);
-	}
-	else if (ennemy->direction == 'S')
-	{
-		if (p_x < (ennemy->x + T_S)
-			&& (p_x + sl->player->width) > ennemy->x
-			&& p_y < (ennemy->y + nb_case * T_S)
-			&& (p_y + sl->player->height) > ennemy->y)
+	if (ennemy->direction == 'S')
+		if (check_s(sl, ennemy, nb_case) == 1)
 			return (1);
-	}
 	return (0);
 }
 

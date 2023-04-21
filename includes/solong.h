@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 12:03:02 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/21 00:32:43 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/21 12:24:27 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,6 +176,12 @@ char		check_direction(t_solong *sl, int _x, int _y);
 char		choose_direction(int *tab);
 int			player_in_view(t_solong *sl, t_ennemy *ennemy);
 int			fov_of_robot(t_ennemy *e, int i, char **map);
+
+// game/ennemy_3.c
+int			check_d(t_solong *sl, t_ennemy *ennemy, int nb_case);
+int			check_s(t_solong *sl, t_ennemy *ennemy, int nb_case);
+int			check_w(t_solong *sl, t_ennemy *ennemy, int nb_case);
+int			check_a(t_solong *sl, t_ennemy *ennemy, int nb_case);
 
 // game/init.c
 t_solong	*init_solong(void);

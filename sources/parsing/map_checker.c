@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:27:55 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/19 02:32:47 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/21 15:13:01 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	checking(t_solong *sl)
 		printf("Error\n");
 	else
 	{
-		print_char_map(map);
 		sl->map->width = ft_strlen_gnl(map[0]);
 		sl->map->height = array_len(map);
 		sl->map->height_px = sl->map->height * T_S;

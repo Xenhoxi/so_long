@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 01:23:10 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/21 00:16:30 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/21 12:58:07 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	draw_map(t_solong *sl)
 	img = mlx_texture_to_image(sl->mlx, sl->texture[8]);
 	x = 0;
 	y = 0;
-	while (sl->map->map[y])
+	while (sl->map->map[y] > 0)
 	{
-		while (sl->map->map[y][x])
+		while (sl->map->map[y][x] > 0)
 		{
 			mlx_image_to_window(sl->mlx, imgsol, (x * T_S), (y * T_S));
 			if (sl->map->map[y][x] == '1')
