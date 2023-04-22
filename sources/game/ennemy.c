@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 15:39:08 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/21 15:33:26 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/22 20:35:07 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,25 +36,21 @@ void	ennemy(void	*param)
 			shot_a_shot(sl, x, y, sl->ennemy[i]->direction);
 			sl->ennemy[i]->timer = 50;
 		}
-		sl->ennemy[i]->timer--;
+		sl->ennemy[i]->timer -= 7 * sl->dt;
 		i++;
 	}
 }
 
 int	player_in_view(t_solong *sl, t_ennemy *ennemy)
 {
-	int	p_x;
-	int	p_y;
 	int	nb_case;
 
 	nb_case = fov_of_robot(ennemy, 1, sl->map->map);
-	p_x = sl->player->img->instances[0].x;
-	p_y = sl->player->img->instances[0].y;
 	if (ennemy->direction == 'D')
 		if (check_d(sl, ennemy, nb_case) == 1)
 			return (1);
 	if (ennemy->direction == 'A')
-		if (check_d(sl, ennemy, nb_case) == 1)
+		if (check_a(sl, ennemy, nb_case) == 1)
 			return (1);
 	if (ennemy->direction == 'W')
 		if (check_w(sl, ennemy, nb_case) == 1)
