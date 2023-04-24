@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:28:48 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/04/22 00:49:26 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/04/24 11:35:36 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ void	delta_time(void *param)
 	current_time = mlx_get_time();
 	sl->dt = current_time - sl->prev_dt;
 	sl->prev_dt = current_time;
-	usleep((1.0 / 60 - sl->dt) * 1000000);
 }
 
 void	run(t_solong *sl)
